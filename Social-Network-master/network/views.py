@@ -32,13 +32,10 @@ def index(request):
     if request.user.is_authenticated:
         followings = Follower.objects.filter(followers=request.user).values_list('user', flat=True)
         suggestions = User.objects.exclude(pk__in=followings).exclude(username=request.user.username).order_by("?")[:6]
-<<<<<<< HEAD
-    # if not request.user.is_authenticated:
-    #     return redirect('login')
-=======
+
     if not request.user.is_authenticated:
         return redirect('login')
->>>>>>> 4789e43ec7b9e3187b8a95300d71e23cf3d5d4a2
+
     return render(request, "network/index.html", {
         "posts": posts,
         "suggestions": suggestions,
