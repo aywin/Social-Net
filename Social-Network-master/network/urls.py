@@ -9,8 +9,8 @@ from network.models import User
 from . import views
 
 urlpatterns = [
-    path("n/index", views.index, name="index"),
-    path("", views.login_view, name="login"),
+    path("", views.index, name="index"),
+    path("n/login", views.login_view, name="login"),
     path("n/logout", views.logout_view, name="logout"),
     path("n/register", views.register, name="register"),
     path("<str:username>", views.profile, name='profile'),
