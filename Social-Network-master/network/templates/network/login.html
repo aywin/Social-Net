@@ -3,14 +3,25 @@
 {% load static %}
 
 {% block title %}
-    Sign In | Network
+    Sign In | ECC-CONNECT
+{% endblock %}
+{% block head %}
+    
 {% endblock %}
 
 {% block body %}
+
     <div class="user-box">
         <div>
+            <style>
+                body {
+                    background-image: url('{% static "network/Images/R.jpg" %}');
+                    background-size: cover;
+                    background-position: center;
+                }
+            </style>
             <center>
-                <img src="{% static 'network/Images/logo_icon.png' %}" height="45em" style="margin-bottom: 2vh;">
+                <img src="{% static 'network/Images/OIP.jpg' %}" height="45em" style="margin-bottom: 2vh;">
                 <h3>Log in to ECC-CONNECT</h3><br>
             </center>
         </div>
