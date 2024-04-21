@@ -4,6 +4,14 @@
     min-height: 100%;
     font-family: system-ui, sans-serif;
 }
+.logo {
+    position: fixed; /* Pour fixer la position du logo sur la page */
+    top: 0; /* Pour placer le logo en haut de la page */
+    left: 0; /* Pour placer le logo tout à gauche de la page */
+    margin: 20px; /* Pour ajouter une marge autour du logo */
+    z-index: 9999; /* Pour placer le logo au-dessus de tous les autres éléments */
+}
+
 .btn{
     border-radius: 20px;
     padding: 0.32rem 1rem 0.375rem 1rem;
