@@ -6,7 +6,7 @@
 {% endblock %}
 
         <title>{% block title %}Social Network{% endblock %}</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
         <link href="{% static 'network/styles.css' %}" rel="stylesheet">
         <link rel="shortcut icon" href="{% static 'network/Images/favicon.ico' %}">
         <script type="text/javascript" src="{% static 'network/layout.js' %}"></script>
@@ -93,15 +93,18 @@
         </div>
         <div class="body" data-page="{{page}}">
             <div class="sidenav">
+                <a href="{% url 'index' %}" class="navbar-brand">
+                    <img src="{% static 'network/Images/logo.png' %}" height="31px">
+               </a>
                 <ul class="menu-list">
                     {% if user.is_authenticated and user.groups.all|length > 0 %}
-        <li><a href="/mentorat/">Mentorat</a></li>
-    {% endif %}
+               <li><a href="/mentorat/">Mentorat</a></li>
+               {% endif %}
     <!-- Afficher le menu "CV" si l'utilisateur est membre du groupe "alumni" ou du groupe "élève" -->
-    {% if user.is_authenticated and user.groups.all|length > 0 %}
-        <li><a href="/deposer-cv/">CV</a></li>
-    {% endif %}
-                    <li><a href="/events/">Events</a></li>
+                {% if user.is_authenticated and user.groups.all|length > 0 %}
+                <li><a href="/deposer-cv/">CV</a></li>
+                {% endif %}
+                <li><a href="/events/">Events</a></li>
                 </ul>
 
 
@@ -110,15 +113,13 @@
 
                 
                 
-                <a href="{% url 'index' %}" class="navbar-brand">
-                    <img src="{% static 'network/Images/logo.png' %}" height="31px">
-                </a>
-                <div style="height: 100%;">
+                 <div style="height: 100%;">
                     <div>
                         <div>
                             <ul>
+                                
                                 <li class="nav-item" id="all_posts">
-                                <a href="{% url 'index' %}" class="nav-link">
+                                <a href="{% url 'indexx' %}" class="nav-link">
                                     <div>
                                         <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-card-heading" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
@@ -215,7 +216,29 @@
                     
 
                     </div>
-                    <div style="position: absolute; bottom: 10px;">
+                    
+                </div>
+            </div>
+            
+            {% block body %}
+            {% endblock %}
+
+            <div class="right-div">
+                <nav class="head">
+                    <form action="#">
+                        <div class="search-div">
+                            <div>
+                                <svg width="1em" height="1.6em" viewBox="0 0 16 6" class="bi bi-search" fill="#6d7e8c" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                                </svg>
+                            </div>
+                            <input type="text" name="query" id="search-box" placeholder="Search Network">
+                            
+                        </div>
+                    </form>
+                    <!-- <div style="position: absolute; bottom: 10px;"> -->
+                        
                         {% if user.is_authenticated %}    
                             <li class="nav-item sidenav-user">
                                 <a href="{% url 'profile' user.username %}" class="nav-link">
@@ -234,28 +257,10 @@
                         {% else %}
                             <input type="hidden" id="user_is_authenticated" value="False">
                         {% endif %}
-                    </div>
-                </div>
-            </div>
-            
-            {% block body %}
-            {% endblock %}
-
-            <div class="right-div">
-                <nav class="head">
-                    <form action="#">
-                        <div class="search-div">
-                            <div>
-                                <svg width="1em" height="1.6em" viewBox="0 0 16 6" class="bi bi-search" fill="#6d7e8c" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-                                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-                                </svg>
-                            </div>
-                            <input type="text" name="query" id="search-box" placeholder="Search Network">
-                        </div>
-                    </form>
+                    <!-- </div>  -->
                 </nav>
-                <div class='right-div-content'>
+                
+                <!-- <div class='right-div-content'>
                     <div class="space" style="background-color: white;"></div>
                     {% if user.is_authenticated %}
                         <div class="suggestion-box">
@@ -308,7 +313,7 @@
                             </center>
                         </div>
                     {% endif %}
-                </div>
+                </div> -->
             </div>
         </div>
 

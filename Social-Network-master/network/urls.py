@@ -9,7 +9,7 @@ from network.models import User
 from . import views
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("n/index", views.index, name="index"),
     path("n/login", views.login_view, name="login"),
     path("n/logout", views.logout_view, name="logout"),
     path("n/register", views.register, name="register"),
@@ -29,7 +29,9 @@ urlpatterns = [
     path("n/post/<int:post_id>/edit", views.edit_post, name="editpost"),
     path('goto-admin/', views.goto_admin, name='goto_admin'),
     path('deposer-cv/', views.upload_cv, name='deposer_cv'),
-    path('events/', views.events_page, name='events_page')
+    path('events/', views.events_page, name='events_page'),
+    path('', views.indexx, name='indexx'),
+    path('stages/', views.stages, name='stages'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

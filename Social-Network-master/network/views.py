@@ -453,6 +453,21 @@ def goto_admin(request):
 
 
 
+def indexx(request):
+    return render(request, 'network/indexx.html')
 
+
+def stages(request):
+    # Récupérer les différents types de stages depuis la base de données
+    stages_pfe = Stage.objects.filter(type='PFE')
+    stages_operateur = Stage.objects.filter(type='Opérateur')
+    stages_academique = Stage.objects.filter(type='Académique')
+
+    context = {
+        'stages_pfe': stages_pfe,
+        'stages_operateur': stages_operateur,
+        'stages_academique': stages_academique,
+    }
+    return render(request, 'stages.html', context)
 
 

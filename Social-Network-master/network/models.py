@@ -86,3 +86,18 @@ class Follower(models.Model):
 class CV(models.Model):
     fichier = models.FileField(upload_to='cvs/')
     date_upload = models.DateTimeField(auto_now_add=True)
+    
+    
+class Stage(models.Model):
+    TYPES_STAGE = (
+        ('PFE', 'PFE'),
+        ('Operateur', 'Stage Opérateur'),
+        ('Academique', 'Stage Académique'),
+        ('Mentorat', 'Mentorat'),
+    )
+    titre = models.CharField(max_length=100)
+    description = models.TextField()
+    type = models.CharField(max_length=20, choices=TYPES_STAGE)
+
+    def __str__(self):
+        return self.titre
