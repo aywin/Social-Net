@@ -1,0 +1,24 @@
+{% extends "network/indexx.html" %}
+
+{% block content %}
+  <h2>Modifier un Stage</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label for="domaine">Domaine:</label>
+    <input type="text" id="domaine" name="domaine" value="{{ stage.domaine }}"><br><br>
+    <label for="entreprise">Entreprise:</label>
+    <input type="text" id="entreprise" name="entreprise" value="{{ stage.entreprise }}"><br><br>
+    <label for="theme">Thème:</label>
+    <input type="text" id="theme" name="theme" value="{{ stage.theme }}"><br><br>
+    <label for="annee">Année:</label>
+    <input type="number" id="annee" name="annee" value="{{ stage.annee }}"><br><br>
+    <label for="type_stage">Type de Stage:</label>
+    <select id="type_stage" name="type_stage">
+      <option value="PFE" {% if stage.type_stage == "PFE" %}selected{% endif %}>PFE</option>
+      <option value="Cesure" {% if stage.type_stage == "Cesure" %}selected{% endif %}>Césure</option>
+      <option value="Operateur" {% if stage.type_stage == "Operateur" %}selected{% endif %}>Opérateur</option>
+      <option value="Academique" {% if stage.type_stage == "Academique" %}selected{% endif %}>Académique</option>
+    </select><br><br>
+    <button type="submit">Mettre à jour</button>
+  </form>
+{% endblock %}

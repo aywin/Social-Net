@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Stages</title>
+    <style>
+        /* Conteneur principal */
+        .stage-outer-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        /* Conteneur de chaque bloc */
+        .stage-container {
+            flex-grow: 1;
+        }
+        /* Styles pour les blocs */
+        .stage-box {
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            margin: 0 10px; /* Espacement entre les blocs */
+        }
+        /* Couleurs pour chaque bloc */
+        .stagepr-box {
+            background-color: rgb(174, 174, 117);
+        }
+        .stageco-box {
+            background-color: rgb(55, 55, 95);
+        }
+        .stageac-box {
+            background-color: rgb(116, 162, 116);
+        }
+        /* Styles pour les liens */
+        .stage-link {
+            text-decoration: underline;
+            color: inherit;
+            cursor: pointer;
+            display: block;
+        }
+        /* Styles pour les listes de domaines de stage */
+        .stage-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 5px;
+            display: none;
+        }
+        .stage-list li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Liste des Stages</h2>
+
+    <!-- Conteneur principal pour aligner les blocs -->
+    <div class="stage-outer-container">
+        <!-- Premier bloc -->
+        <div class="stage-container">
+            <div class="stagepr-box stage-box">
+                <a class="stage-link" href="#" onclick="toggleStageList('pfe')">Stage PFE</a>
+                <ul id="pfe-list" class="stage-list">
+                    <li>Aeronautique</li>
+                    <li>Telecommunication</li>
+                    <li>Data analyst</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Deuxième bloc -->
+        <div class="stage-container">
+            <div class="stageco-box stage-box">
+                <a class="stage-link" href="#" onclick="toggleStageList('epro')">Stage Professionnel</a>
+                <ul id="epro-list" class="stage-list">
+                    <li>Industrie</li>
+                    <li>Automobile</li>
+                    <li>Batiments et Travaux Publics</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Troisième bloc -->
+        <div class="stage-container">
+            <div class="stageac-box stage-box">
+                <a class="stage-link" href="#" onclick="toggleStageList('acad')">Stage Académique</a>
+                <ul id="acad-list" class="stage-list">
+                    <li>Data Science</li>
+                    <li>Finance</li>
+                    <li>Energie</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour afficher ou masquer la liste des domaines de stage
+        function toggleStageList(stageType) {
+            var stageList = document.getElementById(stageType + "-list");
+            if (stageList.style.display === "none") {
+                stageList.style.display = "block";
+            } else {
+                stageList.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

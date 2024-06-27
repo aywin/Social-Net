@@ -1,0 +1,106 @@
+{% extends "network/indexx.html" %}
+
+{% block content %}
+<div class="full-div">
+  <div class="tab-container">
+    <button class="tab-button active" onclick="openTab(event, 'general')">Informations Générales</button>
+    <button class="tab-button" onclick="openTab(event, 'electifs')">Électifs</button>
+    <button class="tab-button" onclick="openTab(event, 'mobilites')">Mobilités</button>
+    <button class="tab-button" onclick="openTab(event, 'stages')">Stages</button>
+    <button class="tab-button" onclick="openTab(event, 'postes')">Postes</button>
+    <button class="tab-button" onclick="openTab(event, 'majeurs')">Majeurs</button>
+    <button class="tab-button" onclick="openTab(event, 'filieres')">Filières</button>
+    <button class="tab-button" onclick="openTab(event, 'options')">Options</button>
+  </div>
+
+  <div id="general" class="tab-content active">
+    <div class="full-profile-section">
+      <h3>Informations Générales</h3>
+      <p><strong>Nom d'utilisateur :</strong> {{ profile_user.username }}</p>
+      <p><strong>Email :</strong> {{ profile_user.email }}</p>
+      <p><strong>Nationalité :</strong> {{ profile_user.nationality }}</p>
+      <p><strong>Promotion :</strong> {{ profile_user.promotion }}</p>
+      <p><strong>Date de graduation :</strong> {{ profile_user.graduation_date }}</p>
+      <p><strong>Numéro de téléphone :</strong> {{ profile_user.phone_number }}</p>
+    
+      <p><strong>LinkedIn :</strong> <a href="{{ profile_user.linkedin }}">{{ profile_user.linkedin }}</a></p>
+      <p><strong>Autres liens :</strong> <a href="{{ profile_user.other_links }}">{{ profile_user.other_links }}</a></p>
+    </div>
+  </div>
+
+  <div id="electifs" class="tab-content">
+    <div class="full-profile-section">
+      <h3>Électifs</h3>
+      {% for electif in electifs %}
+        <p><strong>{{ electif.get_type_display }} :</strong> {{ electif.competence }}</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="mobilites" class="tab-content">
+    <div class="full-profile-section">
+      <h3>Mobilités</h3>
+      {% for mobilite in mobilites %}
+        <div class="full-mobilite-item">
+          <p>{{ profile_user.first_name }} a effectué une mobilité à <strong>{{ mobilite.ecole }}</strong> dans la filière <strong>{{ mobilite.filiere }}</strong>.</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="stages" class="tab-content">
+    <div class="full-profile-section">
+      <h3>Stages</h3>
+      {% for stage in stages %}
+        <div class="full-stage-item">
+          <p>{{ profile_user.first_name }} a réalisé un stage en <strong>{{ stage.domaine }}</strong> chez <strong>{{ stage.entreprise }}</strong> en <strong>{{ stage.annee }}</strong> sur le thème <em>{{ stage.theme }}</em>. Ce stage était un <strong>{{ stage.get_type_stage_display }}</strong>.</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="postes" class="tab-content">
+    <div class="full-profile-section">
+      <h3>Postes</h3>
+      {% for poste in postes %}
+        <div class="full-poste-item">
+          <p>{{ profile_user.first_name }} a travaillé comme <strong>{{ poste.poste_occupe }}</strong> chez <strong>{{ poste.entreprise }}</strong> dans le domaine de <strong>{{ poste.domaine }}</strong>.</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="majeurs" class="tab-content">
+    <div class="full-profile-section">
+      <h3>Majeurs</h3>
+      {% for majeur in majeurs %}
+        <div class="full-majeur-item">
+          <p>{{  profile_user.major }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="filieres" class="tab-content">
+    <div class="full-profile-section">
+      <h3>Filières</h3>
+      {% for filiere in filieres %}
+        <div class="full-filiere-item">
+          <p>{{  profile_user.filiere}}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="options" class="tab-content">
+    <div class="full-profile-section">
+      <h3>Options</h3>
+      {% for option in options %}
+        <div class="full-option-item">
+          <p>{{  profile_user.option}}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

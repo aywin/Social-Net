@@ -1,0 +1,18 @@
+{# templates/network/login.html #}
+{% extends "network/indexx.html" %}
+
+{% block content %}
+  <h2>Connexion</h2>
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="username">Nom d'utilisateur</label>
+      <input type="text" name="username" class="form-control" id="username" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" name="password" class="form-control" id="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Se connecter</button>
+  </form>
+{% endblock %}

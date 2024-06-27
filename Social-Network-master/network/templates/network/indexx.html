@@ -1,126 +1,708 @@
 {% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Votre Titre</title>
-    <!-- Inclure votre CSS ici -->
+    <title>Recherche d'utilisateurs</title>
     <link rel="stylesheet" href="{% static 'network/styles.css' %}">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
 </head>
 <body>
-    <div style="height: 100%;">
-        <div>
+    <header>
+        {% if not user.is_authenticated %}
+        <div class="home-logo-container">
+            <img src="{% static 'network/Images/home-logo.jpg' %}" alt="Logo" class="home-logo">
             
-            <div class="navbar">
-                <div class="menu-container" style="width: 100%;">
+        </div>
+        {% endif %}
 
-                    <ul class="nav-list">
-                        <li class="nav-item" id="stage">
-                            <a href="{% url 'stages' %}" class="nav-link">
-                                <div>
-                                    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-briefcase" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M1 1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3h-1V2H2v2H1V1z"/>
-                                        <path fill-rule="evenodd" d="M1 5h14v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5zm1 1v6h12V6H2z"/>
-                                        <path d="M0 5v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm1 0a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2H0V5z"/>
-                                    </svg>
-                                    &nbsp;&nbsp;Stage
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item" id="orientation">
-                            <a href="#" class="nav-link">
-                                <div>
-                                    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-compass" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M7.78 1.553a1.75 1.75 0 0 1 2.44 0l4.69 4.689a1.75 1.75 0 0 1 0 2.472l-7.5 7.5a1.75 1.75 0 0 1-2.472 0l-7.5-7.5a1.75 1.75 0 0 1 0-2.472l4.69-4.689a1.75 1.75 0 0 1 2.44 0zm.976.976a.25.25 0 0 0-.352 0L3.774 7.975a.25.25 0 0 0 0 .353l6.63 6.63a.25.25 0 0 0 .353 0l6.63-6.63a.25.25 0 0 0 0-.353l-4.372-4.372a.25.25 0 0 0-.352 0l-2.618 2.618a.75.75 0 0 1-1.06-1.06l2.618-2.618z"/>
-                                    </svg>
-                                    &nbsp;&nbsp;Orientation
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item" id="mentorat">
-                            <a href="#" class="nav-link">
-                                <div>
-                                    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-people" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.995-.944v-.002.002zM7.022 13h7.956a.274.274 0 0 0 .014-.002l.008-.002c-.002-.264-.167-1.03-.76-1.72C13.688 10.629 12.718 10 11 10c-1.717 0-2.687.63-3.24 1.276-.593.69-.759 1.457-.76 1.72a1.05 1.05 0 0 0 .022.004zm7.973.056v-.002.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10c-1.668.02-2.615.64-3.16 1.276C1.163 11.97 1 12.739 1 13h3c0-1.045.323-2.086.92-3zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
-                                    </svg>
-                                    &nbsp;&nbsp;Mentorat
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item" id="home">
-                            <a href="#" class="nav-link">
-                                <div>
-                                    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-house-door" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M8 1a1 1 0 0 1 .623.22l6 4.5A1 1 0 0 1 15 6.5v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5zm4 11.5V7.5h3v5h-3z"/>
-                                        <path fill-rule="evenodd" d="M11.828.122A.5.5 0 0 1 12 .5V15H4V1.077l6 .857V15h2V1.5a.5.5 0 0 1 .828-.378z"/>
-                                        <path d="M7 15h2v-5H7v5z"/>
-                                    </svg>
-                                    &nbsp;&nbsp;Home
-                                </div>
-                            </a>
-                        </li>
-                         
-            </ul>
+        {% if user.is_authenticated %}
+        <div class="logo-container">
+            <img src="{% static 'network/Images/B.png' %}" alt="Logo" class="logo">
+        </div>
         
-                <form action="#" style="position: absolute; top: 0; right: 0;">
+        <ul class="nav-head">
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="menu">
+                <li><a href="{% url 'mentoring' %}"><i class="fas fa-chalkboard-teacher"></i> Mentorat</a></li>
+                <li><a href="{% url 'overview' %}"><i class="fas fa-user"></i>overview</a></li>
+                <li><a href="{% url 'users_list' %}"><i class="fas fa-users"></i>Users</a></li>
+                <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> logout</a></li>
+                <li><a href="{% url 'indexx' %}"><i class="fas fa-home"></i> Home</a></li>
+            </ul>
+            <li class="nav-item search-container">
+                <form method="GET" action="{% url 'search' %}" class="search-form">
                     <div class="search-div">
-                    <div>
-                        <svg width="1em" height="1.6em" viewBox="0 0 16 6" class="bi bi-search" fill="#6d7e8c" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-                            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-                        </svg>
+                        <input type="text" name="q" id="search-input" placeholder="Rechercher des utilisateurs..." aria-label="Recherche des utilisateurs" class="search-input">
+                        <button type="submit" class="search-icon"><i class="fas fa-search"></i></button>
                     </div>
-                    <div class="search-box"></div>
-                    <input type="text" name="query" id="search-box" placeholder="Search Network">
-                    
+                </form>
+            </li>
+            {% endif %}
+    
+            {% if user.is_authenticated %}
+            <!-- Profil de l'utilisateur -->
+            <li class="nav-profile">
+                <a href="{% url 'profile_view' %}" class="nav-link">
+                    <div class="profile-info">
+                        {% if user.profile_pic %}
+                            <img src="{{ user.profile_pic.url }}" alt="{{ user.username }}" class="profile-pic">
+                        {% else %}
+                            <div class="profile-icon">👤</div>
+                        {% endif %}
+                        <span class="username">{{ user.username }}</span>
+                    </div>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </header>
+    
+    <div class="container">
+    
+        <main class="main-content" id="main-content">
+            <hr>
+            {% if not user.is_authenticated %}
+
+            <div class="hme-welcome-container">
+                <div class="hme-image-slider">
+                    <img src="{% static 'network/Images/ecc5.jpg' %}" alt="Image 1">
+                    <img src="{% static 'network/Images/groupeplbd.jpg' %}" alt="Image 2">
+                    <img src="{% static 'network/Images/ecc1.jpg' %}" alt="Image 3">
+                    <img src="{% static 'network/Images/ecc2.png' %}" alt="Image 4">
+                    <img src="{% static 'network/Images/ecc3.jpg' %}" alt="Image 5">
+                    <img src="{% static 'network/Images/ecc4.png' %}" alt="Image 6">
+                    <!-- <img src="path/to/image1.jpg" alt="Image 1">
+                    <img src="path/to/image2.jpg" alt="Image 2">
+                    <img src="path/to/image3.jpg" alt="Image 3">
+                    <img src="path/to/image4.jpg" alt="Image 4">
+                    <img src="path/to/image5.jpg" alt="Image 5">
+                    <img src="path/to/image6.jpg" alt="Image 6"> -->
+                </div>
+                
+                <div class="hme-center-block">
+                    <h2>Bienvenue sur notre plateforme</h2>
+                    <p>Connectez-vous pour accéder à toutes les fonctionnalités.</p>
+                    <a href="{% url 'login' %}" class="hme-btn-login">Se connecter</a>
                 </div>
             </div>
-            </form>
+        {% else %}
         
+        
+            <div id="blog-content">
+                
             
-        </div>
-        </div>{% if user.is_authenticated %}
-        <div class="profile-section">
-            <h3>Profil de l'utilisateur</h3>
-            <p>Nom d'utilisateur : {{ user.username }}</p>
-            <ul class="nav-list">
-                <li class="nav-item" id="profile">
-                    <a href="{% url 'profile' user.username %}" class="nav-link">
-                        <div>
-                            <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                            </svg>
-                            &nbsp;&nbsp;Profile
+                <section class="blog-section">
+                    <div class="form-div">
+                    <h3>Paramètres de Recherche</h3>
+                    <form id="param-search-form" method="GET" action="{% url 'search_profiles' %}">
+                        
+                        <h4>Poste</h4>
+                        <div class="poste-filters-container">
+                            <div class="poste-filter">
+                                <label for="poste_domaine">Domaine</label>
+                                <select id="poste_domaine" name="poste_domaine">
+                                    <option value="">Tous</option>
+                                    <option value="Automatisation industrielle">Automatisation industrielle</option>
+                                    <option value="Énergie renouvelable">Énergie renouvelable</option>
+                                    <option value="Analyse de données">Analyse de données</option>
+                                    <option value="Technologie de l'information">Technologie de l'information</option>
+                                    <option value="Conseil en gestion">Conseil en gestion</option>
+                                    <option value="Sécurité informatique">Sécurité informatique</option>
+                                    <option value="Recherche et développement">Recherche et développement</option>
+                                    <option value="Logistique et distribution">Logistique et distribution</option>
+                                    <option value="Aérospatiale">Aérospatiale</option>
+                                    <option value="Industrie manufacturière">Industrie manufacturière</option>
+                                    <option value="Technologie financière">Technologie financière</option>
+                                </select>
+                            </div>
+                        
+                            <div class="poste-filter">
+                                <label for="poste_occupe">Poste Occupé</label>
+                                <select id="poste_occupe" name="poste_occupe">
+                                    <option value="">Tous</option>
+                                    <option value="Ingénieur en Robotique">Ingénieur en Robotique</option>
+                                    <option value="Chef de Projet Éolien">Chef de Projet Éolien</option>
+                                    <option value="Data Scientist">Data Scientist</option>
+                                    <option value="Ingénieur en Intelligence Artificielle">Ingénieur en Intelligence Artificielle</option>
+                                    <option value="Consultant en Stratégie">Consultant en Stratégie</option>
+                                    <option value="Responsable de la Sécurité des Systèmes d'Information (CISO)">Responsable de la Sécurité des Systèmes d'Information (CISO)</option>
+                                    <option value="Ingénieur en Nanotechnologie">Ingénieur en Nanotechnologie</option>
+                                    <option value="Responsable de la Chaîne Logistique">Responsable de la Chaîne Logistique</option>
+                                    <option value="Ingénieur Calcul en Aérospatial">Ingénieur Calcul en Aérospatial</option>
+                                    <option value="Directeur de la Production">Directeur de la Production</option>
+                                    <option value="Architecte Logiciel">Architecte Logiciel</option>
+                                    <option value="Responsable de la Maintenance Industrielle">Responsable de la Maintenance Industrielle</option>
+                                    <option value="Ingénieur en Énergie Solaire">Ingénieur en Énergie Solaire</option>
+                                    <option value="Ingénieur en Biotechnologie">Ingénieur en Biotechnologie</option>
+                                    <option value="Expert en FinTech">Expert en FinTech</option>
+                                </select>
+                            </div>
+                        
+                            <div class="poste-filter">
+                                <label for="poste_entreprise">Entreprise</label>
+                                <select id="poste_entreprise" name="poste_entreprise">
+                                    <option value="">Tous</option>
+                                    <option value="ABB">ABB</option>
+                                    <option value="EDF Renouvelables">EDF Renouvelables</option>
+                                    <option value="BNP Paribas">BNP Paribas</option>
+                                    <option value="Google">Google</option>
+                                    <option value="McKinsey & Company">McKinsey & Company</option>
+                                    <option value="Airbus">Airbus</option>
+                                    <option value="IBM Research">IBM Research</option>
+                                    <option value="Amazon">Amazon</option>
+                                    <option value="Safran">Safran</option>
+                                    <option value="L'Oréal">L'Oréal</option>
+                                    <option value="Microsoft">Microsoft</option>
+                                    <option value="Renault">Renault</option>
+                                    <option value="TotalEnergies">TotalEnergies</option>
+                                    <option value="Sanofi">Sanofi</option>
+                                    <option value="Revolut">Revolut</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                
+                        <h4>Stage</h4>
+                        <div class="stage-filters-container">
+                            <div class="stage-filter">
+                                <label for="stage_type">Type de Stage</label>
+                                <select id="stage_type" name="stage_type">
+                                    <option value="">Tous</option>
+                                    <option value="PFE">PFE</option>
+                                    <option value="Cesure">Césure</option>
+                                    <option value="Academique">Académique</option>
+                                    <option value="Operateur">Opérateur</option>
+                                </select>
+                            </div>
+                        
+                            <div class="stage-filter">
+                                <label for="stage_domaine">Domaine</label>
+                                <select id="stage_domaine" name="stage_domaine">
+                                    <option value="">Tous</option>
+                                    <option value="Automatisation industrielle">Automatisation industrielle</option>
+                                    <option value="Énergie renouvelable">Énergie renouvelable</option>
+                                    <option value="Analyse de données">Analyse de données</option>
+                                    <option value="Technologie de l'information">Technologie de l'information</option>
+                                    <option value="Conseil en gestion">Conseil en gestion</option>
+                                    <option value="Sécurité informatique">Sécurité informatique</option>
+                                    <option value="Recherche et développement">Recherche et développement</option>
+                                    <option value="Logistique et distribution">Logistique et distribution</option>
+                                    <option value="Aérospatiale">Aérospatiale</option>
+                                    <option value="Industrie manufacturière">Industrie manufacturière</option>
+                                    <option value="Technologie financière">Technologie financière</option>
+                                </select>
+                            </div>
+                        
+                            <div class="stage-filter">
+                                <label for="stage_entreprise">Entreprise</label>
+                                <select id="stage_entreprise" name="stage_entreprise">
+                                    <option value="">Tous</option>
+                                    <option value="ABB">ABB</option>
+                                    <option value="EDF Renouvelables">EDF Renouvelables</option>
+                                    <option value="BNP Paribas">BNP Paribas</option>
+                                    <option value="Google">Google</option>
+                                    <option value="McKinsey & Company">McKinsey & Company</option>
+                                    <option value="Airbus">Airbus</option>
+                                    <option value="IBM Research">IBM Research</option>
+                                    <option value="Amazon">Amazon</option>
+                                    <option value="Safran">Safran</option>
+                                    <option value="L'Oréal">L'Oréal</option>
+                                    <option value="Microsoft">Microsoft</option>
+                                    <option value="Renault">Renault</option>
+                                    <option value="TotalEnergies">TotalEnergies</option>
+                                    <option value="Sanofi">Sanofi</option>
+                                    <option value="Revolut">Revolut</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <h4>Mobilité</h4>
+                        <div class="mobilite-filters-container">
+                            <div class="mobilite-filter">
+                                <label for="mobilite_ecole">École </label>
+                                <select id="mobilite_ecole" name="mobilite_ecole">
+                                    <option value="">Tous</option>
+                                    <option value="École Centrale Supelec">École Centrale Supelec</option>
+                                    <option value="École Centrale Lyon">École Centrale Lyon</option>
+                                    <option value="École Centrale Nantes">École Centrale Nantes</option>
+                                    <option value="École Centrale Lille">École Centrale Lille</option>
+                                    <option value="École Centrale Marseille">École Centrale Marseille</option>
+                                </select>
+                            </div>
+                        
+                            <div class="mobilite-filter">
+                                <label for="mobilite_filiere">Filière</label>
+                                <select id="mobilite_filiere" name="mobilite_filiere">
+                                    <option value="">Tous</option>
+                                    <option value="Ingénierie Mécanique et Énergétique">Ingénierie Mécanique et Énergétique</option>
+                                    <option value="Génie Électrique et Électronique">Génie Électrique et Électronique</option>
+                                    <option value="Génie Civil et Environnement">Génie Civil et Environnement</option>
+                                    <option value="Ingénierie des Matériaux">Ingénierie des Matériaux</option>
+                                    <option value="Informatique et Systèmes d'Information">Informatique et Systèmes d'Information</option>
+                                    <option value="Aérospatial et Mécanique des Fluides">Aérospatial et Mécanique des Fluides</option>
+                                    <option value="Biotechnologies et Santé">Biotechnologies et Santé</option>
+                                    <option value="Énergies Renouvelables">Énergies Renouvelables</option>
+                                    <option value="Management et Innovation Technologique">Management et Innovation Technologique</option>
+                                    <option value="Ingénierie Financière et Actuariat">Ingénierie Financière et Actuariat</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+
+
+                        <h4>Électifs</h4>
+                        <div class="electif-filters-container">
+                            <div class="electif-filter">
+                                <label for="concevoir_rechercher">Concevoir-Rechercher</label>
+                                <select id="concevoir_rechercher" name="concevoir_rechercher">
+                                    <option value="">Tous</option>
+                                    <option value="Applications de la physique statistique aux SHS">Applications de la physique statistique aux SHS</option>
+                                    <option value="Introduction à la cyber Sécurité">Introduction à la cyber Sécurité</option>
+                                    <option value="Physique théorique">Physique théorique</option>
+                                    <option value="Gestion des risques">Gestion des risques</option>
+                                    <option value="Traitement d'images et multimédias">Traitement d'images et multimédias</option>
+                                    <option value="Processus Stochastiques">Processus Stochastiques</option>
+                                </select>
+                            </div>
+                        
+                            <div class="electif-filter">
+                                <label for="developper_innover">Développer-Innover</label>
+                                <select id="developper_innover" name="developper_innover">
+                                    <option value="">Tous</option>
+                                    <option value="Logiciel industriel ABAQUS">Logiciel industriel ABAQUS</option>
+                                    <option value="Durabilité environnementale et justice sociale">Durabilité environnementale et justice sociale</option>
+                                    <option value="Réseaux Telecoms">Réseaux Telecoms</option>
+                                    <option value="La ville de demain : initiation à une démarche responsable et durable">La ville de demain : initiation à une démarche responsable et durable</option>
+                                    <option value="Nouvelles technologies pour la mobilité terrestre">Nouvelles technologies pour la mobilité terrestre</option>
+                                    <option value="Facteurs Humains">Facteurs Humains</option>
+                                </select>
+                            </div>
+                        
+                            <div class="electif-filter">
+                                <label for="produire_promouvoir_vendre">Produire-Promouvoir-Vendre</label>
+                                <select id="produire_promouvoir_vendre" name="produire_promouvoir_vendre">
+                                    <option value="">Tous</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Fondamentaux de la Finance du Marché">Fondamentaux de la Finance du Marché</option>
+                                    <option value="Finance d'entreprise">Finance d'entreprise</option>
+                                    <option value="Stratégie d'entreprise">Stratégie d'entreprise</option>
+                                    <option value="Entreprenariat social et défis socio-économiques en Afrique : stratégies pour un développement durable">Entreprenariat social et défis socio-économiques en Afrique : stratégies pour un développement durable</option>
+                                    <option value="Introduction à l'analyse politique du monde contemporain">Introduction à l'analyse politique du monde contemporain</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        
+                 
+                        
+                        <div class="filters-container">
+                            <div class="filter-group">
+                                <h4>Options</h4>
+                                <div>
+                                    <select id="option" name="option">
+                                        <option value="">Tous</option>
+                                        <option value="Génie Industriel">Génie Industriel</option>
+                                        <option value="Data Science et Digitalisation">Data Science et Digitalisation</option>
+                                        <option value="Énergie">Énergie</option>
+                                    </select>
+                                </div>
+                            </div>
+                        
+                            <div class="filter-group">
+                                <h4>Filières</h4>
+                                <div>
+                                    <select id="filiere" name="filiere">
+                                        <option value="">Tous</option>
+                                        <option value="Industrie 4.0">Industrie 4.0</option>
+                                        <option value="Ingénierie des Systèmes Complexes">Ingénierie des Systèmes Complexes</option>
+                                        <option value="Entreprendre en Afrique">Entreprendre en Afrique</option>
+                                    </select>
+                                </div>
+                            </div>
+                        
+                            <div class="filter-group">
+                                <h4>Groupe d'Utilisateur</h4>
+                                <div>
+                                    <select id="user_group" name="user_group">
+                                        <option value="">Tous</option>
+                                        <option value="alumni">Alumni</option>
+                                        <option value="eleve">Élève</option>
+                                    </select>
+                                </div>
+                            </div>
+                        
+                            <div class="filter-group">
+                                <h4>Nationalité</h4>
+                                <div>
+                                    <select id="nationality" name="nationality">
+                                        <option value="">Tous</option>
+                                        <option value="Français">Français</option>
+                                        <option value="Marocain">Marocain</option>
+                                        <option value="Chinois">Chinois</option>
+                                        <option value="Ivoirien">Ivoirien</option>
+                                        <option value="Burkinabé">Burkinabé</option>
+                                    </select>
+                                </div>
+                            </div>
+                        
+                            <div class="filter-group">
+                                <h4>Majeurs</h4>
+                                <div>
+                                    
+                                    <select id="major" name="major">
+                                        <option value="">Tous</option>
+                                        <option value="Aide à la Décision">Aide à la Décision</option>
+                                        <option value="Énergie">Énergie</option>
+                                        <option value="Matériau">Matériau</option>
+                                        <option value="Industrie">Industrie</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                
+                        <button type="submit">Rechercher</button>
+                    </form>
+                </div>
+                </section>
+                
+            <h2>À propos de l'École Centrale Casablanca</h2>
+                <section class="blog-section">
+                    <h3>Présentation</h3>
+                    <p>
+                        L'École Centrale Casablanca est un établissement prestigieux d'enseignement supérieur situé à Casablanca.
+                        Elle offre des programmes de formation d'ingénieurs de haut niveau, visant à former des cadres dirigeants
+                        pour les entreprises et l'industrie.
+                    </p>
+                </section>
+                <section class="blog-section">
+                    <h3>Environnement de Formation</h3>
+                    <p>
+                        Les étudiants de l'École Centrale Casablanca bénéficient d'un environnement de formation de qualité,
+                        combinant à la fois des enseignements théoriques et pratiques, ainsi que des opportunités de recherche
+                        et d'innovation.
+                    </p>
+                </section>
+                <section class="blog-section statistics">
+                    <h3>Quelques Chiffres</h3>
+                    <ul class="statistics-list">
+                        <li>500+ Étudiants</li>
+                        <li>30+ Partenariats Industriels</li>
+                        <li>20+ Programmes d'Échange</li>
+                        <li>95% Taux d'Emploi des Diplômés</li>
+                    </ul>
+                </section>
+                <section class="blog-section">
+                    <h3>Opportunités</h3>
+                    <p>
+                        Nous vous invitons à explorer les nombreuses opportunités qu'offre notre institution, que ce soit à
+                        travers des stages, des projets de recherche ou des collaborations avec l'industrie.
+                    </p>
+                </section>
+                
+            </div>
+            
+            {% endif %}
+            
+            <div id="dynamic-content">
+                {% block content %}
+                {% endblock %}
+                {% block profil %}
+                {% endblock %}
+                
+            </div>
+        </main>
+    </div>
+    
+
+    <footer>
+        <!-- Contenu du footer -->
+        <p>&copy; 2024  ECC-Connect. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        async function sendMessage() {
+            const userInput = document.getElementById('userInput').value;
+            if (!userInput) return;
+        
+            // Afficher le message de l'utilisateur
+            const chatbox = document.getElementById('chatbox');
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user';
+            userMessage.textContent = userInput;
+            chatbox.appendChild(userMessage);
+            document.getElementById('userInput').value = '';
+        
+            // Envoyer le message à l'API
+            const response = await fetch('/chat/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({ message: userInput })
+            });
+            const data = await response.json();
+        
+            // Afficher la réponse du chatbot
+            const botMessage = document.createElement('div');
+            botMessage.className = 'message bot';
+            botMessage.textContent = data.response;
+            chatbox.appendChild(botMessage);
+        
+            // Faire défiler vers le bas du chatbox
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+        
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            var sidebarLeft = document.getElementById('sidebar-left');
+            var blogContent = document.getElementById('blog-content');
+            var dynamicContent = document.getElementById('dynamic-content');
+            var blogVisible = true;
+
+            function hideBlog() {
+                blogContent.style.display = 'none';
+                blogVisible = false;
+            }
+
+            function showBlog() {
+                blogContent.style.display = 'block';
+                blogVisible = true;
+            }
+
+            function checkAndHideBlog() {
+                if (dynamicContent.innerHTML.trim() && blogVisible) {
+                    hideBlog();
+                }
+            }
+
+            function loadUserProfile(username) {
+                fetch(`/ajax/profile/${username}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            dynamicContent.innerHTML = `<p>${data.error}</p>`;
+                        } else {
+                            dynamicContent.innerHTML = data.html;
+                        }
+                        checkAndHideBlog(); // Vérifier et masquer le blog après le chargement du profil
+                    })
+                    .catch(error => console.error('Error loading profile:', error));
+            }
+
+            document.addEventListener('click', function(event) {
+                var link = event.target.closest('.profile-link');
+                if (link) {
+                    event.preventDefault();
+                    var username = link.dataset.username;
+                    loadUserProfile(username);
+                }
+            });
+
+            // Masquer le blog au chargement si du contenu est présent
+            checkAndHideBlog();
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.querySelector('#search-input');
+            const searchForm = document.querySelector('.search-form');
+    
+            searchInput.addEventListener('input', function () {
+                if (searchInput.value.length >= 3) {
+                    fetchResults(searchInput.value);
+                } else {
+                    clearResults();
+                }
+            });
+    
+            function fetchResults(query) {
+                fetch(`/search?q=${query}`, {
+                    headers: {
+                        'x-requested-with': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    displayResults(data.results);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+    
+            function displayResults(results) {
+                const searchResults = document.getElementById('search-results');
+                searchResults.innerHTML = results.map(user => `
+                    <a href="/full_profile/${user.username}" class="search-result-box">
+                        <div class="search-result-pic-container">
+                            ${user.profile_pic ? `<img src="${user.profile_pic}" alt="${user.username}" class="search-result-pic">` : '<div class="search-result-icon">👤</div>'}
+                        </div>
+                        <div class="search-result-info">
+                            <div class="header">
+                                <span class="search-result-username">${user.username}</span>
+                                <span class="search-result-group">${user.user_group}</span>
+                            </div>
+                            <div class="search-result-nationality">${user.nationality}</div>
+                            <div class="search-result-name">${user.first_name} ${user.last_name}</div>
+                            <div class="search-result-promotion">${user.promotion}</div>
+                            <div class="search-result-post">
+                                ${user.latest_post ? `${user.latest_post.domaine} - ${user.latest_post.entreprise}` : ''}
+                            </div>
+                            <div class="search-result-bio">${user.bio}</div>
                         </div>
                     </a>
-                </li>
-            </ul>
-        </div>
-        {% endif %}
-        <div class="center-block">
-            <h2>Bienvenue sur notre plateforme</h2>
-            <p>Connectez-vous pour accéder à toutes les fonctionnalités.</p>
-            <a href="{% url 'login' %}" class="btn-login">Se connecter</a>
-        </div>
-        
-        <!-- {% if user.is_authenticated %}
-            <button id="popup-btn" class="btn btn-success new-post-btn" onclick="createpost()">Create Post</button>
-        {% endif %}
-        {% if user.is_superuser %}
-        <div class="mt-3">
-        <form action="{% url 'goto_admin' %}" method="get">
-            <button type="submit" class="btn btn-success new-post-btn">PageAdmin</button> -->
-        </form>
-    </div>
-    {% endif %}
+                `).join('');
+            }
+    
+            function clearResults() {
+                document.getElementById('search-results').innerHTML = '';
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu');
+            
+            menuToggle.addEventListener('click', function () {
+                menu.classList.toggle('active');
+            });
+        });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const selects = document.querySelectorAll('.form-div select');
+
+    selects.forEach(select => {
+        select.addEventListener('change', (event) => {
+            const selectedOption = event.target.options[event.target.selectedIndex];
+            selectedOption.style.backgroundColor = '#e9ecef';
+            setTimeout(() => {
+                selectedOption.style.backgroundColor = '';
+            }, 300);
+        });
+    });
+});
+
+
+function openTab(evt, tabName) {
+    var i, tabcontent, tabbuttons;
+
+    // Récupérer tous les éléments avec la classe "tab-content" et les cacher
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Récupérer tous les éléments avec la classe "tab-button" et enlever la classe "active"
+    tabbuttons = document.getElementsByClassName("tab-button");
+    for (i = 0; i < tabbuttons.length; i++) {
+        tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
+    }
+
+    // Montrer l'onglet actuel et ajouter une classe "active" au bouton qui a été cliqué
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Afficher par défaut le premier onglet
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector(".tab-button").click();
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var body = document.body;
+    var footer = document.querySelector("footer");
+    var mainContent = document.getElementById("main-content");
+
+    // Vérifie si le contenu est plus court que la hauteur de la fenêtre
+    if (mainContent.offsetHeight <= window.innerHeight) {
+        footer.style.display = "block"; // Affiche le footer si le contenu est court
+    }
+
+    // Ajoute une classe pour masquer le footer si nécessaire
+    if (mainContent.offsetHeight > window.innerHeight) {
+        body.classList.add("hide-footer");
+    }
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const buttons = document.querySelectorAll('.over-toggle-button');
+    const sections = document.querySelectorAll('.over-section');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            const target = document.querySelector(this.dataset.target);
+
+            sections.forEach(section => {
+                if (section !== target) {
+                    section.classList.add('over-hidden');
+                    section.classList.remove('over-visible');
+                }
+            });
+
+            target.classList.toggle('over-hidden');
+            target.classList.toggle('over-visible');
+        });
+    });
+});
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.cheick-button').forEach(button => {
+        button.addEventListener('click', function () {
+            const type = this.dataset.type;
+            let queryString = '';
+
+            if (type === 'stage') {
+                queryString = `?stage_type=${this.dataset.typeStage}&stage_domaine=${this.dataset.domaine}`;
+            } else if (type === 'poste') {
+                queryString = `?poste_occupe=${this.dataset.posteOccupe}&domaine=${this.dataset.domaine}`;
+            } else if (type === 'mobilite') {
+                queryString = `?mobilite_filiere=${this.dataset.filiere}&mobilite_ecole=${this.dataset.ecole}`;
+            }
+
+            window.location.href = `/search_profiles/${queryString}`;
+        });
+    });
+});
+    
     
 
-    </div>
-    
-</div> 
+        
+    </script>
+
 
 </body>
+
+
 </html>

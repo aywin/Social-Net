@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_countries',
+    'haystack',
+   
+
 ]
 
 MIDDLEWARE = [
@@ -125,3 +129,28 @@ MEDIA_URL = '/media/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
+
+
+    
+
+
+
+
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+
+
+
+# settings.py
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'users_list'  # Redirige après connexion réussie
+LOGOUT_REDIRECT_URL = '/'  # Redirige après déconnexion

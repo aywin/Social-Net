@@ -1,0 +1,48 @@
+{% extends 'network/indexx.html' %}
+{% load static %}
+
+{% block content %}
+<div class="regist-container">
+    <img src="{% static 'network/Images/B.png' %}" alt="Logo" class="regist-logo">
+    <h1>Ajouter un Utilisateur</h1>
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <div class="regist-row">
+            <div class="regist-form-group">
+                <label for="username">Nom d'utilisateur:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="regist-form-group">
+                <label for="last_name">Nom:</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+        </div>
+        <div class="regist-row">
+            <div class="regist-form-group">
+                <label for="first_name">Prénom:</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            <div class="regist-form-group">
+                <label for="password">Mot de passe:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+        </div>
+        <div class="regist-row">
+            <div class="regist-form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="regist-form-group">
+                <label>Groupe d'utilisateur:</label>
+                <div class="regist-radio-group">
+                    <input type="radio" id="alumni" name="user_group" value="Alumni" required>
+                    <label for="alumni">Alumni</label>
+                    <input type="radio" id="eleve" name="user_group" value="Eleve" required>
+                    <label for="eleve">Élève</label>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="regist-submit">Ajouter</button>
+    </form>
+</div>
+{% endblock %}

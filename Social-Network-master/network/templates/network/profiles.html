@@ -1,0 +1,136 @@
+{% extends "network/indexx.html" %}
+{% load static %}
+{% block content %}
+<div class="config-container">
+    <div class="config-header">
+        <h1>Configurer le profil</h1>
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="config-section">
+            <h2>Informations générales</h2>
+            <div class="config-subsection">
+                {{ form.username.label_tag }}{{ form.username }}
+                {{ form.first_name.label_tag }}{{ form.first_name }}
+                {{ form.last_name.label_tag }}{{ form.last_name }}
+                {{ form.user_group.label_tag }}{{ form.user_group }}
+                {{ form.email.label_tag }}{{ form.email }}
+            </div>
+        </div>
+
+        <div class="config-section config-profile-pic">
+            <h2>Photo de profil</h2>
+            {% if user.profile_pic and user.profile_pic.url %}
+                <img src="{{ user.profile_pic.url }}" alt="config-Profile Picture" width="150" height="150">
+            {% else %}
+                <img src="{% static 'Images/default_profile_pic.jpg' %}" alt="Default Profile Picture" width="150" height="150">
+            {% endif %}
+            <label for="id_profile_pic" class="upload-label">Changer de photo</label>
+            {{ form.profile_pic }}
+        </div>
+        
+
+        <div class="config-section">
+            <h2>Bio</h2>
+            {{ form.bio.label_tag }}{{ form.bio }}
+        </div>
+
+        <div class="config-section">
+            <h2>Informations supplémentaires</h2>
+            <div class="config-subsection">
+                {{ form.nationality.label_tag }}{{ form.nationality }}
+                {{ form.promotion.label_tag }}{{ form.promotion }}
+                {{ form.graduation_date.label_tag }}{{ form.graduation_date }}
+                {{ form.phone_number.label_tag }}{{ form.phone_number }}
+                {{ form.major.label_tag }}{{ form.major }}
+                {{ form.option.label_tag }}{{ form.option }}
+                {{ form.filiere.label_tag }}{{ form.filiere }}
+            </div>
+            <div class="config-subsection">
+                {{ form.linkedin.label_tag }}{{ form.linkedin }}
+                {{ form.other_links.label_tag }}{{ form.other_links }}
+            </div>
+        </div>
+
+        <div class="config-section">
+            <h2>Compétences</h2>
+            <div class="config-subsection">
+                {{ form.competence_concevoir_rechercher.label_tag }}{{ form.competence_concevoir_rechercher }}
+                {{ form.competence_developper_innover.label_tag }}{{ form.competence_developper_innover }}
+                {{ form.competence_produire_promouvoir_vendre.label_tag }}{{ form.competence_produire_promouvoir_vendre }}
+            </div>
+        </div>
+
+        <div class="config-section">
+            <h2>Mentorat</h2>
+            <div class="config-subsection">
+                {{ form.mentoring_1A.label_tag }}{{ form.mentoring_1A }}
+                {{ form.mentoring_2A.label_tag }}{{ form.mentoring_2A }}
+                {{ form.mentoring_3A.label_tag }}{{ form.mentoring_3A }}
+            </div>
+        </div>
+
+        <div class="config-section" style="text-align: center;">
+            <button class="config-form-button" type="submit">Enregistrer les modifications</button>
+            <a href="{% url 'profile_view' %}" class="config-form-button">Annuler</a>
+        </div>
+    </form>
+
+    <div id="config-mobilite-section" class="config-section">
+        <h2>Mobilité</h2>
+        <div id="config-mobilite-list" class="config-list">
+            {% for mobilite in mobilites %}
+                <div class="config-item">
+                    <p>Mobilité à {{ mobilite.ecole }} pour des études en {{ mobilite.filiere }}</p>
+                    <div class="config-actions">
+                        <a href="{% url 'update_mobilite' mobilite.id %}" class="config-btn">Modifier</a>
+                        <a href="{% url 'delete_mobilite' mobilite.id %}" class="config-btn config-btn-delete">Supprimer</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="config-button-container">
+            <a href="{% url 'add_mobilite' %}" class="config-btn-add">Ajouter</a>
+        </div>
+    </div>
+    
+    <div id="config-stage-section" class="config-section">
+        <h2>Stage</h2>
+        <div id="config-stage-list" class="config-list">
+            {% for stage in stages %}
+                <div class="config-item">
+                    <p>Stage {{ stage.type_stage }} à {{ stage.entreprise }}, domaine: {{ stage.domaine }}</p>
+                    <div class="config-actions">
+                        <a href="{% url 'update_stage' stage.id %}" class="config-btn">Modifier</a>
+                        <a href="{% url 'delete_stage' stage.id %}" class="config-btn config-btn-delete">Supprimer</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="config-button-container">
+            <a href="{% url 'add_stage' %}" class="config-btn-add">Ajouter</a>
+        </div>
+    </div>
+    
+    <div id="config-poste-section" class="config-section">
+        <h2>Poste</h2>
+        <div id="config-poste-list" class="config-list">
+            {% for poste in postes %}
+                <div class="config-item">
+                    <p>{{ poste.domaine }} à {{ poste.entreprise }}</p>
+                    <div class="config-actions">
+                        <a href="{% url 'update_poste' poste.id %}" class="config-btn">Modifier</a>
+                        <a href="{% url 'delete_poste' poste.id %}" class="config-btn config-btn-delete">Supprimer</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="config-button-container">
+            <a href="{% url 'add_poste' %}" class="config-btn-add">Ajouter</a>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

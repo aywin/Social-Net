@@ -1,0 +1,32 @@
+{% extends "network/indexx.html" %}
+
+{% block content %}
+<div class="mentor-container">
+    <h1>Available Mentors</h1>
+    <ul class="mentor-list-group">
+        {% for mentor in mentors %}
+        <li class="mentor-list-group-item d-flex justify-content-between align-items-center">
+            <div class="mentor-details">
+                {% if mentor.profile_pic %}
+                <img src="{{ mentor.profile_pic.url }}" alt="{{ mentor.username }}" class="mentor-profile-pic">
+                {% else %}
+                <div class="mentor-icon">👤</div>
+                {% endif %}
+                {{ mentor.first_name }} {{ mentor.last_name }} ({{ mentor.user_group }})
+            </div>
+            <div class="mentor-circles">
+                {% if mentor.mentoring_1A %}
+                <span class="mentor-circle">1A</span>
+                {% endif %}
+                {% if mentor.mentoring_2A %}
+                <span class="mentor-circle">2A</span>
+                {% endif %}
+                {% if mentor.mentoring_3A %}
+                <span class="mentor-circle">3A</span>
+                {% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{{ object.username }}
+{{ object.bio }}
+{{ object.email }}
+{{ object.nationality }}
+{{ object.promotion }}
+{{ object.phone_number }}
+{{ object.major }}
+{{ object.option }}
+{{ object.filiere }}
+{{ object.linkedin }}
+{{ object.other_links }}

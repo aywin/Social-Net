@@ -1,0 +1,14 @@
+<!-- templates/network/delete_user.html -->
+{% extends "network/indexx.html" %}
+
+{% block content %}
+<div class="userscontainer" style="text-align: center;">
+    
+    <p>Are you sure you want to delete user {{ user.username }}?</p>
+    <form method="post" class="delete-form" style="display: inline-block;">
+        {% csrf_token %}
+        <button class="button delete">Delete</button>
+        <a class="button cancel" href="{% url 'users_list' %}">Cancel</a>
+    </form>
+</div>
+{% endblock %}

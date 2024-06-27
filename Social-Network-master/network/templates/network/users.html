@@ -1,0 +1,41 @@
+<!-- templates/network/users.html -->
+{% extends "network/indexx.html" %}
+
+{% block content %}
+<div class="userscontainer">
+    <div class="table-container">
+        <h2>All Users</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    {% if request.user.is_superuser %}
+                    <th class="actions-column">Actions</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                {% if not user.is_superuser %}
+                <tr>
+                    <td class="user-{{ user.user_group|lower }}">{{ user.first_name }}</td>
+                    <td class="user-{{ user.user_group|lower }}">{{ user.last_name }}</td>
+                    {% if request.user.is_superuser %}
+                    <td class="actions-column">
+                        <a class="button update" href="{% url 'edit_user' user.username %}">Update</a>
+                        <a class="button delete" href="{% url 'delete_user' user.username %}">Delete</a>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+    {% if user.is_superuser %}
+    <a class="button add-users add-users-button" href="{% url 'register' %}">Add Users</a>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "network/indexx.html" %}
+
+{% block content %}
+<div class="search-result-container" id="search-results">
+    {% if page_obj %}
+        {% for user in page_obj %}
+            <a href="{% url 'full_profile' user.username %}" class="search-result-box">
+                <div class="search-result-pic-container">
+                    {% if user.profile_pic %}
+                        <img src="{{ user.profile_pic.url }}" alt="{{ user.username }}" class="search-result-pic">
+                    {% else %}
+                        <div class="search-result-icon">👤</div>
+                    {% endif %}
+                </div>
+                <div class="search-result-info">
+                    <div class="header">
+                        <span class="search-result-username">{{ user.username }}</span>
+                        <span class="search-result-group">{{ user.user_group }}</span>
+                    </div>
+                    <div class="search-result-nationality">{{ user.nationality }}</div>
+                    <div class="search-result-name">{{ user.first_name }} {{ user.last_name }}</div>
+                    <div class="search-result-promotion">{{ user.promotion }}</div>
+                    <div class="search-result-post">
+                        {% with latest_post=user.postes.last %}
+                            {% if latest_post %}
+                                <div>{{ latest_post.domaine }} - {{ latest_post.entreprise }}</div>
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                    <!-- Mentorat -->
+                    <div class="search-result-mentoring">
+                        {% if user.mentoring_1A or user.mentoring_2A or user.mentoring_3A %}
+                            <div class="mentoring-options">
+                                {% if user.mentoring_1A %}
+                                    <span class="mentoring-circle">1A</span>
+                                {% endif %}
+                                {% if user.mentoring_2A %}
+                                    <span class="mentoring-circle">2A</span>
+                                {% endif %}
+                                {% if user.mentoring_3A %}
+                                    <span class="mentoring-circle">3A</span>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    {% else %}
+        <p>Aucun résultat trouvé.</p>
+    {% endif %}
+</div>
+
+<div class="search-result-pagination" id="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?q={{ query }}&page=1" class="page-link" data-page="1">&laquo; Première</a>
+        <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}" class="page-link" data-page="{{ page_obj.previous_page_number }}">Précédente</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+            <span class="current">{{ num }}</span>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a href="?q={{ query }}&page={{ num }}" class="page-link" data-page="{{ num }}">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <a href="?q={{ query }}&page={{ page_obj.next_page_number }}" class="page-link" data-page="{{ page_obj.next_page_number }}">Suivante</a>
+        <a href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}" class="page-link" data-page="{{ page_obj.paginator.num_pages }}">Dernière &raquo;</a>
+    {% endif %}
+</div>
+{% endblock %}

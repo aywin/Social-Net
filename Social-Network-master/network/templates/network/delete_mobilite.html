@@ -1,0 +1,11 @@
+{% extends "network/indexx.html" %}
+
+{% block content %}
+  <h2>Supprimer une Mobilité</h2>
+  <p>Êtes-vous sûr de vouloir supprimer cette mobilité?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Supprimer</button>
+    <a href="{% url 'profile' %}">Annuler</a>
+  </form>
+{% endblock %}

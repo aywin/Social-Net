@@ -1,0 +1,5 @@
+{{ object.domaine }}
+{{ object.entreprise }}
+{{ object.theme }}
+{{ object.annee }}
+{{ object.type_stage }}

@@ -1,0 +1,52 @@
+{% extends 'network/indexx.html' %}
+
+{% block content %}
+<div class="over-overview-container">
+    
+    <!-- Boutons pour afficher/masquer les sections -->
+    <div class="over-buttons-container">
+        <button class="over-toggle-button" data-target="#over-stages-section">Stages</button>
+        <button class="over-toggle-button" data-target="#over-postes-section">Postes</button>
+        <button class="over-toggle-button" data-target="#over-mobilites-section">Mobilités</button>
+        <button class="over-toggle-button" data-target="#over-mobilites-section">Projets</button>
+    </div>
+
+    <!-- Section des stages -->
+    <div id="over-stages-section" class="over-section over-hidden">
+        {% for stage in stages %}
+        <div class="over-stage-item">
+            <h3>{{ stage.domaine }}</h3>
+            <p><strong>Type:</strong> {{ stage.type_stage }}</p>
+            <p><strong>Entreprise:</strong> {{ stage.entreprise }}</p>
+            <p><strong>Thème:</strong> {{ stage.theme }}</p>
+            <div class="btn-center">
+            <button type="button" class="cheick-button" data-type="stage" data-domaine="{{ stage.domaine }}" data-type-stage="{{ stage.type_stage }}" data-entreprise="{{ stage.entreprise }}" data-theme="{{ stage.theme }}">Check</button>
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Section des postes -->
+    <div id="over-postes-section" class="over-section over-hidden">
+        {% for poste in postes %}
+        <div class="over-poste-item">
+            <h3>{{ poste.domaine }}</h3>
+            <p><strong>Poste Occupé:</strong> {{ poste.poste_occupe }}</p>
+            <p><strong>Entreprise:</strong> {{ poste.entreprise }}</p>
+            <button type="button" class="cheick-button" data-type="poste" data-domaine="{{ poste.domaine }}" data-poste-occupe="{{ poste.poste_occupe }}" data-entreprise="{{ poste.entreprise }}">Check</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Section des mobilités -->
+    <div id="over-mobilites-section" class="over-section over-hidden">
+        {% for mobilite in mobilites %}
+        <div class="over-mobilite-item">
+            <h3>{{ mobilite.ecole }}</h3>
+            <p><strong>Filière:</strong> {{ mobilite.filiere }}</p>
+            <button type="button" class="cheick-button" data-type="mobilite" data-ecole="{{ mobilite.ecole }}" data-filiere="{{ mobilite.filiere }}">Check</button>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

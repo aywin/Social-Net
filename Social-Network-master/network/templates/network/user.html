@@ -1,0 +1,83 @@
+{% extends "network/indexx.html" %}
+
+{% block content %}
+<div class="profile-container">
+    <h1>User Profile</h1>
+    <p><strong>Username:</strong> {{ username }}</p>
+    <p><strong>Email:</strong> {{ email }}</p>
+    <p><strong>First Name:</strong> {{ firstname }}</p>
+    <p><strong>Last Name:</strong> {{ lastname }}</p>
+    <p><strong>User Group:</strong> {{ user_group }}</p>
+    
+    {% if profile_pic %}
+        <p><strong>Profile Picture:</strong></p>
+        <img class="profile-pic" src="{{ profile_pic }}" alt="Profile Picture">
+    {% else %}
+        <p><strong>Profile Picture:</strong> No profile picture uploaded.</p>
+    {% endif %}
+    
+    {% if cover %}
+        <p><strong>Cover Photo:</strong></p>
+        <img class="cover-photo" src="{{ cover }}" alt="Cover Photo">
+    {% else %}
+        <p><strong>Cover Photo:</strong> No cover photo uploaded.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+{% block extra_css %}
+<style>
+    .profile-container {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-container h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .profile-container p {
+        font-size: 18px;
+        line-height: 1.5;
+        color: #555;
+    }
+
+    .profile-container strong {
+        color: #333;
+    }
+
+    .profile-pic,
+    .cover-photo {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 10px 0;
+    }
+
+    .profile-pic {
+        border-radius: 50%;
+    }
+
+    .cover-photo {
+        border-radius: 10px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    ul li {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 5px;
+    }
+</style>
+{% endblock %}

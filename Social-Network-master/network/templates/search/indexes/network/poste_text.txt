@@ -1,0 +1,3 @@
+{{ object.domaine }}
+{{ object.entreprise }}
+{{ object.poste_occupe }}

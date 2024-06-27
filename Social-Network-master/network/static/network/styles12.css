@@ -1,0 +1,926 @@
+/* Styles généraux */
+/* Assurez-vous que le body et html occupent toute la hauteur */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+ .header, .sidebar, .container, .footer {
+    border: 1px solid red; /* Couleur vive pour être bien visible */
+}
+
+/* Conteneur principal */
+.container {
+    display: flex;
+    flex: 1; /* Permet à ce conteneur de prendre tout l'espace vertical disponible */
+    margin-top: 60px; /* Ajustez la marge supérieure en fonction de la hauteur de votre header */
+}
+
+/* Header de recherche */
+header.research {
+    background-color: rgba(92, 214, 120, 0.886); /* Fond vert */
+    padding: 10px; /* Ajouter un peu d'espace intérieur */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 1000;
+}
+
+.nav-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+/* Conteneur de la barre de recherche pour la centrer */
+.search-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Formulaire de recherche */
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-div {
+    display: flex;
+    align-items: center;
+}
+
+.search-div svg {
+    margin-right: 8px;
+}
+
+.search-div input {
+    width: 600px; /* Augmentation de la largeur */
+    max-width: 100%; /* S'assurer qu'il ne dépasse pas la largeur du conteneur parent */
+}
+
+.search-input::placeholder {
+    padding-left: 40px; /* Ajouter de l'espace pour l'icône */
+    
+    background-repeat: no-repeat;
+    background-size: 20px; /* Taille de l'icône */
+    background-position: 10px center; /* Position de l'icône */
+}
+
+.search-input:focus::placeholder {
+    color: transparent; /* Masquer le placeholder lorsque le champ est en focus */
+}
+.search-results {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Contenu principal */
+.main-content {
+    background-color: #86ba6f;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre le contenu horizontalement */
+    
+    padding: 20px;
+    overflow-y: auto; /* Ajout du défilement vertical si nécessaire */
+    margin-bottom: 60px; /* Ajustez la marge inférieure en fonction de la hauteur de votre footer */
+}
+
+/* Footer fixe en bas */
+footer {
+    background-color: #8acf1c;
+    text-align: center;
+    padding: 10px;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    position: relative;
+    width: 100%;
+    box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+}
+
+/* Centrer le message de bienvenue dans un box vert */
+.center-block {
+    background-color: #a2e3a2; /* Fond vert */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center; /* Centrer le texte */
+    width: 50%; /* Largeur du box */
+    margin: 0 auto; /* Centrer le box */
+}
+
+
+/* Sidebar */
+.sidebar {
+    padding: 20px;
+    display: block;
+    flex: 0 0 auto;
+    overflow-y: auto; /* Ajout du défilement vertical si nécessaire */
+}
+
+/* Sidebar gauche */
+.sidebar-left {
+    width: 300px;
+    background-color: #d9edf7;
+    border-right: 1px solid #ccc;
+}
+
+
+
+/* Pagination */
+.pagination {
+    position: fixed;
+    bottom: 50px; /* Ajustez cette valeur pour déplacer la pagination vers le haut */
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.pagination a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: blue;
+}
+
+.pagination a:hover {
+    text-decoration: underline;
+}
+
+/* Ajout du style de focus pour les liens de pagination */
+.pagination a:focus {
+    outline: 2px solid blue;
+}
+
+/* Formulaires */
+form {
+    margin-bottom: 20px; /* Espace entre le formulaire et les résultats */
+}
+
+form input[type="text"] {
+    padding: 8px;
+    width: 200px;
+    margin-right: 10px;
+}
+
+form button {
+    padding: 8px 16px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: darkblue;
+}
+
+/* Formulaire de base */
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+input[type="file"] {
+    margin-top: 5px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Ajout du style de focus pour les boutons */
+button:focus {
+    outline: 2px solid #0056b3;
+}
+
+/* Profil */
+.nav-profile {
+    margin-left: auto; /* Alignement à droite */
+    margin-right: 20px; /* Marge pour espacement */
+}
+
+/* Utilisateurs */
+.user {
+    margin-bottom: 20px;
+    background-color: #a2e3a2; /* Fond vert */
+    padding: 20px; /* Ajout de l'espace intérieur */
+    border-radius: 5px; /* Coins arrondis */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre */
+}
+
+.profile-info {
+    display: flex;
+    align-items: center; /* Alignement vertical */
+    margin-bottom: 10px; /* Espacement entre les détails et le reste */
+}
+
+
+.username {
+    margin-right: 10px; /* Espacement entre le nom d'utilisateur et la photo de profil */
+}
+
+.profile-pic {
+    width: 50px; /* Taille de la photo de profil */
+    height: 50px;
+    border-radius: 50%; /* Pour arrondir l'image */
+    margin-right: 12px; /* Espace entre l'image et les détails */
+}
+
+.profile-icon {
+    font-size: 50px; /* Taille de l'icône de profil */
+    color: #555; /* Couleur de l'icône */
+    margin-right: 20px; /* Espace entre l'icône et les détails */
+}
+
+.username {
+    font-weight: bold;
+    margin-right: 10px; /* Espace entre le nom d'utilisateur et le groupe */
+}
+
+.user-group {
+    color: #9f3131; /* Couleur du groupe d'utilisateur */
+    font-size: 0.9em; /* Taille de police légèrement plus petite */
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.profile-icon {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #ccc; /* Couleur de fond de l'icône */
+    margin-bottom: 20px;
+}
+
+.profile h2 {
+    margin-bottom: 10px;
+}
+
+.profile p {
+    margin-bottom: 5px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Couleur du fond du bouton */
+    color: #fff; /* Couleur du texte du bouton */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.search-profile {
+    background-color: #a2e3a2; /* Fond vert */
+    padding: 20px; /* Ajout de l'espace intérieur */
+    border-radius: 5px; /* Coins arrondis */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre */
+    margin-bottom: 20px; /* Espace en bas */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: background-color 0.3s ease; /* Transition pour hover */
+}
+.search-profile:hover {
+    background-color: #8cd18c; /* Fond plus foncé au survol */
+}
+.nav-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%; /* Assure que le lien prend tout l'espace de l'élément */
+}
+.profile-item p {
+    margin: 5px 0; /* Espace entre les paragraphes */
+    color: #333; /* Couleur du texte */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Couleur du fond du bouton au survol */
+}
+
+/* Ajout du style de focus pour les boutons */
+.btn:focus {
+    outline: 2px solid #0056b3;
+}
+
+/* Styles pour le menu hamburger */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.menu-toggle span {
+    display: block;
+    background-color: #333;
+    height: 3px;
+    width: 25px;
+    margin: 3px 0;
+    transition: all 0.3s ease;
+}
+
+/* Styles pour les éléments du menu */
+.menu {
+    display: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    display: block;
+    margin-right: 10px; /* Espacement entre les éléments du menu */
+}
+
+.menu a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* Affichage du menu lorsque le bouton du menu hamburger est cliqué */
+.menu-toggle.clicked + .menu {
+    display: block;
+}
+
+/* Rotation et transformation des barres du menu hamburger lorsque cliqué */
+.menu-toggle.clicked span:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+}
+
+.menu-toggle.clicked span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.clicked span:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+}
+
+/* Media query pour afficher le menu en fonction de la taille de l'écran */
+@media screen and (min-width: 768px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    .nav-head {
+        display: flex;
+        align-items: center;
+    }
+
+    .menu {
+        display: flex;
+        align-items: center;
+    }
+
+    .menu li {
+        display: inline-block;
+        margin-right: 20px;
+    }
+}
+
+
+
+/* Styles spécifiques pour le profil */
+.c_profile.body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.c_profile.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #8a6b6b;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+h2, h3 {
+    color: #333;
+}
+
+form.profile-form, form.add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="file"],
+form select,
+form textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.save-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.save-btn:hover {
+    background-color: #0056b3;
+}
+
+.add-btn {
+    padding: 10px 20px;
+    background-color: #088e25;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #218838;
+}
+
+.item-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item-list li {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .c_profile.container {
+        width: 95%;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="file"],
+    form select,
+    form textarea {
+        width: calc(100% - 20px);
+    }
+}
+
+
+/* Styles pour le message de bienvenue centré */
+.center-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #d4edda; /* Vert pâle */
+    border: 1px solid #c3e6cb; /* Bordure vert */
+    border-radius: 5px;
+}
+
+
+
+
+/* Style pour le blog */
+/* Style pour le blog */
+.blog-content {
+    background-color: #f0f0f0; /* Couleur de fond */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: left; /* Alignement du texte à gauche */
+    width: 80%; /* Largeur du contenu du blog */
+    margin: 20px auto; /* Centrer le contenu du blog avec marge */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ajouter une ombre */
+}
+
+.blog-content h2 {
+    color: #286c0d; /* Couleur du titre */
+    text-align: center; /* Centrer le titre principal */
+}
+
+.blog-section {
+    margin-bottom: 20px; /* Espace entre les sections */
+}
+
+.blog-section h3 {
+    color: #286c0d; /* Couleur des sous-titres */
+    margin-bottom: 10px; /* Espace sous les sous-titres */
+}
+
+.blog-section p {
+    color: #333; /* Couleur du texte */
+    line-height: 1.6; /* Hauteur de ligne pour améliorer la lisibilité */
+    margin-bottom: 10px; /* Espace entre les paragraphes */
+}
+
+/* Style pour les statistiques */
+.statistics {
+    background-color: #e6f7e6; /* Fond légèrement coloré pour les statistiques */
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.statistics-list {
+    list-style-type: none; /* Retirer les puces des listes */
+    padding: 0;
+}
+
+.statistics-list li {
+    font-size: 1.2em; /* Augmenter la taille du texte */
+    color: #286c0d; /* Couleur du texte des statistiques */
+    margin-bottom: 10px; /* Espace entre les éléments de la liste */
+    padding-left: 20px;
+    position: relative;
+}
+
+.statistics-list li::before {
+    content: '✔'; /* Ajouter une coche avant chaque élément */
+    position: absolute;
+    left: 0;
+    color: #4CAF50; /* Couleur de la coche */
+    font-size: 1.5em; /* Taille de la coche */
+}
+
+/* Style pour les liens et les boutons */
+.btn-login {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Couleur du fond du bouton */
+    color: #fff; /* Couleur du texte du bouton */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    background-color: #0056b3; /* Couleur du fond du bouton au survol */
+}
+
+.btn-login:focus {
+    outline: 2px solid #0056b3; /* Style de focus pour les boutons */
+}
+
+
+
+/* css pour users.html, update, delete */
+/* static/styles.css */
+
+.userscontainer {
+    position: relative;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.add-users-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #17a2b8;
+    border-radius: 4px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.button {
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 4px;
+    margin: 0 4px;
+}
+
+.button.update {
+    background-color: #28a745;
+}
+
+.button.delete {
+    background-color: #dc3545;
+}
+
+/* Button styling */
+/* Button styling */
+/* Button styling */
+.button {
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.button.update {
+    background-color: #007BFF;
+    color: white;
+}
+
+.button.update:hover {
+    background-color: #0056b3;
+}
+
+.button.delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.button.delete:hover {
+    background-color: #c82333;
+}
+
+.button.cancel {
+    background-color: #6c757d;
+    color: white;
+}
+
+.button.cancel:hover {
+    background-color: #5a6268;
+}
+
+/* Text color styling based on user group */
+.user-eleve {
+    color: purple;
+}
+
+.user-alumni {
+    color: green;
+}
+
+
+
+
+
+/* css fullprofil */
+/* styles.css */
+
+/* styles.css */
+
+full-profil-body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.full-profil-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #b2d65e;
+    box-shadow: 0 0 10px rgba(244, 98, 98, 0.1);
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+h1, h2 {
+    color: #5b1a47;
+}
+
+.full-profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.full-profile-header img {
+    border-radius: 50%;
+    margin-right: 5px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.full-profile-header div {
+    flex-grow: 1;
+}
+
+.full-profile-header p {
+    margin: 5px 0;
+}
+
+.full-profile-section {
+    margin-bottom: 20px;
+}
+
+.full-profile-section h2 {
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 5px;
+}
+
+.full-profile-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.full-profile-item:last-child {
+    border-bottom: none;
+}
+
+.full-profile-item p {
+    margin: 5px 0;
+}
+
+
+
+.profile-sidebar {
+    position: fixed;
+    top: 60px; /* Ajustez selon la hauteur de votre header */
+    right: 0;
+    width: 300px; /* Ajustez la largeur selon vos besoins */
+    height: calc(100vh - 60px);
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    transform: translateX(100%);
+    z-index: 1000; /* Assurez-vous qu'il est au-dessus des autres éléments */
+}
+
+.profile-sidebar.show {
+    transform: translateX(0);
+}
+
+.profile-sidebar-content {
+    padding: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+
+/* Styles register */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles spécifiques au formulaire */
+.register-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;  /* Doublé la largeur du conteneur */
+    margin: 50px auto;
+}
+
+.register-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.register-group {
+    margin-bottom: 15px;
+}
+
+.register-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.register-group input[type="text"],
+.register-group input[type="email"],
+.register-group input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;  /* Augmenter la taille de la police pour un meilleur visuel */
+    overflow: visible;  /* Assurer que le texte long est visible */
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.radio-group input {
+    margin-right: 10px;
+}
+
+
+
+
+
+/* style du full-profile */
+
+
+
+/* fin style du full-profile */

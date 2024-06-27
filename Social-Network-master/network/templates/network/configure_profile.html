@@ -1,0 +1,58 @@
+{% extends "network/indexx.html" %}
+
+{% block content %}
+  <h2>Modifier le profil</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enregistrer</button>
+  </form>
+
+  <div id="config-mobilite-section">
+      <h2>Mobilité</h2>
+      <div id="config-mobilite-list">
+          {% for mobilite in mobilites %}
+              <div class="mobilite-item">
+                  <p>{{ mobilite.name }}</p>
+                  <a href="{% url 'update_mobilite' mobilite.id %}" class="config-btn">Update</a>
+                  <a href="{% url 'delete_mobilite' mobilite.id %}" class="config-btn">Delete</a>
+              </div>
+          {% endfor %}
+      </div>
+      <div class="config-button-container">
+          <a href="{% url 'add_mobilite' %}" class="config-btn">Add</a>
+      </div>
+  </div>
+
+  <div id="config-stage-section">
+      <h2>Stage</h2>
+      <div id="config-stage-list">
+          {% for stage in stages %}
+              <div class="stage-item">
+                  <p>{{ stage.name }}</p>
+                  <a href="{% url 'update_stage' stage.id %}" class="config-btn">Update</a>
+                  <a href="{% url 'delete_stage' stage.id %}" class="config-btn">Delete</a>
+              </div>
+          {% endfor %}
+      </div>
+      <div class="config-button-container">
+          <a href="{% url 'add_stage' %}" class="config-btn">Add</a>
+      </div>
+  </div>
+
+  <div id="config-poste-section">
+      <h2>Poste</h2>
+      <div id="config-poste-list">
+          {% for poste in postes %}
+              <div class="poste-item">
+                  <p>{{ poste.name }}</p>
+                  <a href="{% url 'update_poste' poste.id %}" class="config-btn">Update</a>
+                  <a href="{% url 'delete_poste' poste.id %}" class="config-btn">Delete</a>
+              </div>
+          {% endfor %}
+      </div>
+      <div class="config-button-container">
+          <a href="{% url 'add_poste' %}" class="config-btn">Add</a>
+      </div>
+  </div>
+{% endblock %}

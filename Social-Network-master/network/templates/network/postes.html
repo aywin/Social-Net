@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Domaines des utilisateurs</title>
+</head>
+<body>
+    <h1>Domaines des postes et stages des utilisateurs</h1>
+    
+    <h2>Domaines :</h2>
+    <ul>
+        {% for domaine in domaines_utilisateurs %}
+            <li>{{ domaine }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

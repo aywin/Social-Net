@@ -1,0 +1,43 @@
+{% extends "network/indexx.html" %}
+{% load static %}
+
+{% block content %}
+<div class="regist-container">
+    <img src="{% static 'network/Images/B.png' %}" alt="Logo" class="regist-logo">
+    <form method="post">
+        {% csrf_token %}
+        
+        <!-- Utilisation des mêmes classes CSS que dans le formulaire d'ajout -->
+        <div class="regist-row">
+            <div class="regist-form-group">
+                <label for="id_username">Nom d'utilisateur:</label>
+                {{ form.username }}
+            </div>
+            <div class="regist-form-group">
+                <label for="id_last_name">Nom:</label>
+                {{ form.last_name }}
+            </div>
+        </div>
+        <div class="regist-row">
+            <div class="regist-form-group">
+                <label for="id_first_name">Prénom:</label>
+                {{ form.first_name }}
+            </div>
+        </div>
+        <div class="regist-row">
+            <div class="regist-form-group">
+                <label for="id_email">Email:</label>
+                {{ form.email }}
+            </div>
+            <div class="regist-form-group">
+                <label for="id_user_group">Groupe d'utilisateur:</label>
+                {{ form.user_group }}
+            </div>
+        </div>
+        
+        <!-- Boutons avec classes CSS correspondantes -->
+        <button type="submit" class="regist-submit">Enregistrer</button>
+        <a href="{% url 'full_profile' profile_user.username %}" class="regist-cancel">Annuler</a>
+    </form>
+</div>
+{% endblock %}

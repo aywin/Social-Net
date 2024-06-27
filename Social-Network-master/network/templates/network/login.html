@@ -1,55 +1,140 @@
-User
-{% extends "network/layout2.html" %}
-
 {% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px; /* Ajoutez du padding pour permettre le défilement */
+            overflow-y: auto; /* Activez le défilement vertical */
+            overflow-x: hidden; /* Désactivez le défilement horizontal */
+            position: relative;
+            flex-direction: column;
+            background-image: url('/static/network/Images/ECC-bg.png'); /* Chemin absolu vers votre image */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
 
-{% block title %}
-    Sign In | Network
-{% endblock %}
+       
 
-{% block body %}
-    <div class="user-box">
-        <div>
-            <center>
-                <img src="{% static 'network/Images/logo_icon.png' %}" height="45em" style="margin-bottom: 2vh;">
-                <h3>Log in to ECC-CONNECT</h3><br>
-            </center>
-        </div>
-    
-        <form action="{% url 'login' %}" method="post" id="signin-form" style="width: 100%;margin-bottom: 5vh;">
+        .log-box {
+            background-color: #ffffff;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .log-box h3,
+        .log-box h2 {
+            color: #333;
+        }
+
+        .log-box a.log-btn {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .log-box a.log-btn:hover {
+            background-color: #0056b3;
+        }
+
+        form {
+            margin-top: 2em;
+        }
+
+        .log-form-group {
+            margin-bottom: 15px;
+        }
+
+        .log-form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .log-form-control:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .log-btn-primary {
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 95%;
+            transition: background-color 0.3s;
+        }
+
+        .log-btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .log-star small {
+            color: red;
+        }
+
+        .logo {
+            margin-bottom: 10px; /* Ajustez cette valeur pour réduire ou augmenter l'espace */
+            width: 150px; /* Ajustez cette valeur pour la taille du logo */
+            height: auto; /* Conservez les proportions du logo */
+        }
+    </style>
+</head>
+<body>
+    <div class="background-stripes"></div>
+
+    <img src="{% static 'network/Images/B.png' %}" alt="Logo" class="logo">
+    <div class="log-box">
+        <h3>Se connecter à ECC-CONNECT</h3><br>
+        <form action="{% url 'login' %}" method="post" id="signin-form">
             {% csrf_token %}
-            <div class="form-group">
-                <input class="form-control inp usrnm" type="text" name="username" placeholder="Username" autocomplete="off" autofocus>
+            <div class="log-form-group">
+                <input class="log-form-control inp usrnm" type="text" name="username" placeholder="Nom d'utilisateur" autocomplete="off" autofocus>
             </div>
-            <div class="form-group">
-                <input class="form-control inp pswd" type="password" name="password" placeholder="Password" autocomplete="off">
-                <span class="star"><small>{{message}}</small></span>
+            <div class="log-form-group">
+                <input class="log-form-control inp pswd" type="password" name="password" placeholder="Mot de passe" autocomplete="off">
+                <span class="log-star"><small>{{ message }}</small></span>
             </div>
             <center>
-                <input class="btn btn-primary" type="submit" value="Log in" style="margin-top: 10px; width: 95%;" disabled>
+                <input class="log-btn-primary" type="submit" value="Se connecter">
             </center>
         </form>
-    
-        <!-- <div>
-            <center>
-                Don't have an account?&nbsp;&nbsp;<a href="{% url 'register' %}">Sign Up</a>
-            </center>
-        </div> -->
     </div>
-
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            document.querySelectorAll(".inp").forEach(input => {
-                input.addEventListener('input', () => {
-                    if ((document.querySelector('.usrnm').value.length === 0) || (document.querySelector('.pswd').value.length === 0)) {
-                        document.querySelector('input[type="submit"]').disabled = true;
-                    }
-                    else {
-                        document.querySelector('input[type="submit"]').disabled = false;
-                    }
-                });
-            });
-        });
-    </script>
-{% endblock %}
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends "network/indexx.html" %}
+
+{% block content %}
+<div class="ajout">
+  <h2>Ajouter un Poste</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label for="domaine">Domaine:</label>
+    <input type="text" id="domaine" name="domaine">
+    <label for="entreprise">Entreprise:</label>
+    <input type="text" id="entreprise" name="entreprise">
+    <button type="submit">Ajouter</button>
+  </form>
+</div>
+{% endblock %}

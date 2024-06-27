@@ -1,0 +1,19 @@
+{% extends "network/indexx.html" %}
+
+{% block content %}
+  <h2>Modifier une Mobilité</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label for="ecole">École:</label>
+    <select id="ecole" name="ecole">
+      <option value="École Centrale Supelec" {% if mobilite.ecole == "École Centrale Supelec" %}selected{% endif %}>École Centrale Supelec</option>
+      <option value="École Centrale Lyon" {% if mobilite.ecole == "École Centrale Lyon" %}selected{% endif %}>École Centrale Lyon</option>
+      <option value="École Centrale Nantes" {% if mobilite.ecole == "École Centrale Nantes" %}selected{% endif %}>École Centrale Nantes</option>
+      <option value="École Centrale Lille" {% if mobilite.ecole == "École Centrale Lille" %}selected{% endif %}>École Centrale Lille</option>
+      <option value="École Centrale Marseille" {% if mobilite.ecole == "École Centrale Marseille" %}selected{% endif %}>École Centrale Marseille</option>
+    </select><br><br>
+    <label for="filiere">Filière:</label>
+    <input type="text" id="filiere" name="filiere" value="{{ mobilite.filiere }}"><br><br>
+    <button type="submit">Mettre à jour</button>
+  </form>
+{% endblock %}
